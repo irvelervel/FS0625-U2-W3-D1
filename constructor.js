@@ -73,5 +73,69 @@ p2.lastName = 'Morandi'
 p2.age = 81
 p2.email = 'gianni@morandi.com'
 
+const p3 = new Person()
 delete p3.language
 p3.pippo = 'ddd'
+
+// questa funzione costruttore crea i nostri oggetti di tipo "person" in serie,
+// però li crea come dei "gusci vuoti": con tutte le proprietà necessarie ma con dei
+// valori inizialmente "neutri"; questo ci obbliga poi a dover assegnare manualmente
+// i valori desiderati ad ogni istanza.
+// c'è un modo un po' più "furbo" per creare una funzione costrutture che già assegni
+// dei valori?
+
+const FullPerson = function (
+  _firstName,
+  _lastName,
+  _age,
+  _skills,
+  _language,
+  _region,
+  _phone,
+  _email,
+) {
+  // altra funzione costruttore, che assegnerà direttamente i valori
+  this.firstName = _firstName
+  this.lastName = _lastName
+  this.age = _age
+  this.skills = _skills
+  this.language = _language
+  this.region = _region
+  this.phone = _phone
+  this.email = _email
+  this.showName = function () {
+    return `Io mi chiamo ${this.firstName} ${this.lastName}`
+    // "this", se utilizzato dentro un oggetto, è un riferimento all'oggetto stesso
+  }
+}
+
+const fp1 = new FullPerson(
+  'Paolo',
+  'Bonolis',
+  64,
+  ['host'],
+  ['italian'],
+  'Lazio',
+  '12312321',
+  'paolo@bonolis.com',
+)
+
+const fp2 = new FullPerson(
+  'Topo',
+  'Gigio',
+  80,
+  ['fa ridere'],
+  ['italian'],
+  'Lazio',
+  21321,
+  'topo@gigio.com',
+)
+
+console.log('FP1', fp1)
+console.log('FP2', fp2)
+
+// la funzione costruttore c'è sempre stata in JS dall'alba dei tempi
+// negli ultimi 10 anni, da quando è arrivato ES6, è arrivato un NUOVO MODO di creare
+// una funzione costruttore: utilizzando la parola "class"
+
+// andiamo ad esplorarle in class.js
